@@ -19,6 +19,6 @@
         url: http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
         dest: /tmp
         mode: 0755
-        timeout: 30
+        timeout: 60 
       when: not war_file.stat.exists 
         
