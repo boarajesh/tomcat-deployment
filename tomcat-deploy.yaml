@@ -16,9 +16,6 @@
       when:  not war_file.stat.exists
     - name: Download War file
       get_url:
-        url: http://192.168.0.143:8081/artifactory/list/libs-release-local/jenkins-tomcat.war
-        dest: /tmp/jenkins-tomcat.war
-        force: yes
-        timeout: 60 
+      synchronize: src="http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war" dest="/tmp"
       when: not war_file.stat.exists 
         
