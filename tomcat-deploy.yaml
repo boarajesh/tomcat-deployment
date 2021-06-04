@@ -4,9 +4,9 @@
   become: no
   tasks:
     - name: Check the war file exists
-        stat:
-          path: /opt/jenkins-tomcat.war
-        register: war_file
+      stat:
+        path: /opt/jenkins-tomcat.war
+       register: war_file
 
     - debug:
         msg: "File exists..."
