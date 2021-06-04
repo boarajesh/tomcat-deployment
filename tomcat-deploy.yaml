@@ -13,4 +13,12 @@
       when: war_file.stat.exists
     - debug:
         msg: "File not found"
+      when:  not war_file.stat.exists
+    - name: Download War file
+      get_url:
+        url: http://example.com/path/file.conf
+        dest: /opt/
+        username: admin
+        password: Rajchinna
       when:  not war_file.stat.exists 
+        
