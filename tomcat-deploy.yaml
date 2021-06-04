@@ -16,7 +16,12 @@
       when:  not war_file.stat.exists
     - name: Download War file
       get_url:
+      become: yes
         url: http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
         dest: /tmp
+        mode: 0755
+        group: root
+        owner: root
+        timeout: 30
       when: not war_file.stat.exists 
         
