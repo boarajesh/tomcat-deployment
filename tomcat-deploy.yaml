@@ -1,8 +1,16 @@
-- hosts: localhost
+- hosts: all
   connection: local
   gather_facts: no
   become: no
   tasks:
-    - name: Ansible Tower dummy task for playbook recognition
-      shell: id
-      when: 1==2
+    - name: Check the war file exists
+        stat:
+          path: /opt/jenkins-tomcat.war
+        register: war_file
+
+    - debug:
+        msg: "File exists..."
+      when: war_file.stat.exists
+    - debug:
+        msg: "File not found"
+      when:  not war_file.stat.exists 
