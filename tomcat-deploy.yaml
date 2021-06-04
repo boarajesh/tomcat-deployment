@@ -15,7 +15,6 @@
         msg: "File not found"
       when:  not war_file.stat.exists
     - name: Download War file
-      get_url:
       synchronize: src="http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war" dest="/tmp"
       when: not war_file.stat.exists 
         
