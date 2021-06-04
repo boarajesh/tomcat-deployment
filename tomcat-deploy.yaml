@@ -18,6 +18,7 @@
       get_url:
         url: http://192.168.0.143:8081/artifactory/list/libs-release-local/jenkins-tomcat.war
         dest: /tmp
+        checksum: d83f2d3b08580b0f62c9018b4463ed08560838bafd1e5bbcc88ee4a728592878 
         timeout: 60 
       when: not war_file.stat.exists 
         
