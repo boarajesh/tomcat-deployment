@@ -1,6 +1,6 @@
-- hosts: all
+- hosts: tomcatservers
   connection: local
-  gather_facts: no
+  gather_facts: yes
   become: no
   tasks:
     - name: Check the war file exists
