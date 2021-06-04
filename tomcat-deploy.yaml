@@ -18,5 +18,5 @@
       get_url:
         url: http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
         dest: /tmp
-      when:  not war_file.stat.exists 
+      when: not war_file.stat.exists 
         
