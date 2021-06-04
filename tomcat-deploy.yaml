@@ -1,7 +1,10 @@
-- name: Download artifact test
-  become: true
-  get_url:
-    url: http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
-    dest: /opt
-    url_username: admin
-    url_password: Rajchinna
+- name: download file from artifactory
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: downloading
+    get_url:
+      url: http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
+      dest: /opt
+      url_username: admin
+      url_password: Rajchinna
