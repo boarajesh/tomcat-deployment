@@ -1,4 +1,4 @@
-- hosts: tomcatservers
+- hosts: all
   connection: local
   gather_facts: yes
   become: no
