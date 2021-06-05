@@ -18,7 +18,7 @@
       get_url:
         force: yes
         url: http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
-        dest: /opt/jenkins-tomcat.war
+        dest: /tmp/jenkins-tomcat.war
         owner: root
         group: root
         mode: 0755
