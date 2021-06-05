@@ -24,5 +24,29 @@
       #shell: creates=/tmp/tomcat/jenkins-tomcat.war chdir=/tmp/tomcat http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
       #shell: wget -O /tmp/jenkins-tomcat.war http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
       #shell: chdir=/tmp wget http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
-      when: not war_file.stat.exists 
+      when: not war_file.stat.exists
+    - name: Check the war on webapps server file exists
+      stat:
+        path: /opt/tomcat/apache-tomcat-9.0.46/webapps/jenkins-tomcat.war
+      register: webapps_war_file
+    - debug:
+        msg: "File exists..."
+      when: webapps_war_file.stat.exists
+    - debug:
+        msg: "File not found"
+      when:  not webapps_war_file.stat.exists
+    - name: copy file and from /tmp to webapps
+      synchronize:
+        src: /tmp/jenkins-tomcat.war
+        dest: /opt/tomcat/apache-tomcat-9.0.46/webapps/
+      when: not webaps_war_file.stat.exists
+    - name: take backup existing file
+      synchronize:
+        src: /tmp/jenkins-tomcat.war
+        dest: /opt/bak_jenkins-tomcat.war
+      when: webaps_war_file.stat.exists
+    - name: statrting tomcat service
+      shell: /opt/tomcat/apache-tomcat-9.0.46/bin/startup.sh
+      
+      
         
