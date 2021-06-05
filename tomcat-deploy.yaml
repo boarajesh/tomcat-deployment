@@ -19,8 +19,6 @@
         force: yes
         url: http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
         dest: /tmp/jenkins-tomcat.war
-        owner: awx
-        group: awx
         mode: 0755
         timeout: 30
       #shell: creates=/tmp/tomcat/jenkins-tomcat.war chdir=/tmp/tomcat http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
