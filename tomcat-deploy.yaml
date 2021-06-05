@@ -21,6 +21,6 @@
         #dest: /tmp/jenkins-tomcat.war
         #mode: 0755
       #shell: creates=/tmp/tomcat/jenkins-tomcat.war chdir=/tmp/tomcat http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
-      shell: wget /tmp/jenkins-tomcat.war http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
+      shell: wget -O /tmp/jenkins-tomcat.war http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
       when: not war_file.stat.exists 
         
