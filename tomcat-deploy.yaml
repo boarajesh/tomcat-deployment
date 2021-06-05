@@ -28,6 +28,6 @@
     - name: copying file
       copy:
         src: /home/awx/jenkins-tomcat.war
-        dest: /opt/tomcat/apache-tomcat-9.0.46/webapps
+        dest: /opt
         force: yes
     
