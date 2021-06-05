@@ -30,21 +30,21 @@
         path: /opt/tomcat/apache-tomcat-9.0.46/webapps/jenkins-tomcat.war
       register: webapps_war_file
     - debug:
-        msg: "File exists..."
+        msg: "webapps File exists..."
       when: webapps_war_file.stat.exists
     - debug:
-        msg: "File not found"
+        msg: "webapps File not found"
       when:  not webapps_war_file.stat.exists
     - name: copy file and from /tmp to webapps
-      synchronize:
+      copy:
         src: /tmp/jenkins-tomcat.war
         dest: /opt/tomcat/apache-tomcat-9.0.46/webapps/
-      when: not webaps_war_file.stat.exists
+      when: not webapps_war_file.stat.exists
     - name: take backup existing file
       synchronize:
         src: /tmp/jenkins-tomcat.war
         dest: /opt/bak_jenkins-tomcat.war
-      when: webaps_war_file.stat.exists
+      when: webapps_war_file.stat.exists
     - name: statrting tomcat service
       shell: /opt/tomcat/apache-tomcat-9.0.46/bin/startup.sh
       
