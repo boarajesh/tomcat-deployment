@@ -15,12 +15,13 @@
         msg: "File not found"
       when:  not war_file.stat.exists
     - name: Download War file
-      #get_url:
-        #force: yes
-        #url: http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
-        #dest: /tmp/jenkins-tomcat.war
-        #mode: 0755
+      get_url:
+        force: yes
+        url: http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
+        dest: /tmp/jenkins-tomcat.war
+        mode: 0755
+        checksum: md5:456995405f4dd8bdc62802abe0cb9395
       #shell: creates=/tmp/tomcat/jenkins-tomcat.war chdir=/tmp/tomcat http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
-      shell: wget -O /tmp/jenkins-tomcat.war http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
+      #shell: wget -O /tmp/jenkins-tomcat.war http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
       when: not war_file.stat.exists 
         
