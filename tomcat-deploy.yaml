@@ -5,7 +5,7 @@
   tasks:
     - name: Check the war file exists
       stat:
-        path: /opt/jenkins-tomcat.war
+        path: /tmp/jenkins-tomcat.war
       register: war_file
 
     - debug:
@@ -18,7 +18,7 @@
       get_url:
         force: yes
         url: http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
-        dest: /opt/jenkins-tomcat.war
+        dest: /tmp/jenkins-tomcat.war
         mode: 0755
       #shell: creates=/tmp/tomcat/jenkins-tomcat.war chdir=/tmp/tomcat http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
       when: not war_file.stat.exists 
