@@ -31,7 +31,7 @@
     - name: copying file
       copy:
         src: /tmp/jenkins-tomcat.war
-        dest: /opt/tomcat/apache-tomcat-9.0.46/webapps/
+        dest: /opt
         force: yes
       #shell: cp -R /tmp/jenkins-tomcat.war /opt/tomcat/apache-tomcat-9.0.46/webapps/  
     
