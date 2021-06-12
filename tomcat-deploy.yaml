@@ -6,13 +6,24 @@
       stat:
         path: /tmp/jenkins-tomcat.war
       register: war_file
-
+    - name: Check the war file exists
+      stat:
+        path: /opt/tomcat/apache-tomcat-9.0.46/webapps/jenkins-tomcat.war
+      register: deployed_war_file 
     - debug:
         msg: "File exists..."
       when: war_file.stat.exists
     - debug:
         msg: "File not found"
-      when:  not war_file.stat.exists
+      when:  not war_file.stat.exists   
+    - debug:
+        msg: "Deployed File exists..."
+      when: deployed_war_file.stat.exists
+    - debug:
+        msg: "Deployed  not File exists..."
+      when: not deployed_war_file.stat.exists      
+    - name: Stopping the Tomcat services
+      shell: nohup /opt/tomcat/apache-tomcat-9.0.46/bin/shutdown.sh 
     - name: Download War file
       get_url:
         force: yes
@@ -25,11 +36,14 @@
       #shell: wget http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
       #shell: chdir=/tmp wget http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
       when: not war_file.stat.exists
+    - name: taking backup exissting file
+      shell: mv /opt/tomcat/apache-tomcat-9.0.46/webapps/jenkins-tomcat.war  /opt/tomcat/backup/jenkins-tomcat.war_$(date -d '1 HOUR AGO' +%Y%m%d%H%M.%S)
+      when: deployed_war_file.stat.exists
     - name: copying file
       #copy:
         #src: /tmp/jenkins-tomcat.war
         #dest: /opt/tomcat/apache-tomcat-9.0.46/webapps
         #force: yes
       shell: cp -R /tmp/jenkins-tomcat.war /opt/tomcat/apache-tomcat-9.0.46/webapps 
-    
-  
+    - name: Starting Tomact services
+      shell: nohup /opt/tomcat/apache-tomcat-9.0.46/bin/startup.sh &
