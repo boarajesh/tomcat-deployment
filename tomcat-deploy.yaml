@@ -29,10 +29,10 @@
       #shell: chdir=/tmp wget http://192.168.0.143:8081/artifactory/libs-release-local/jenkins-tomcat.war
       when: not war_file.stat.exists
     - name: copying file
-      #copy:
-        #src: /tmp/jenkins-tomcat.war
-        #dest: /opt/tomcat/apache-tomcat-9.0.46/webapps/
-        #force: yes
-      shell: cp -R /tmp/jenkins-tomcat.war /opt/tomcat/apache-tomcat-9.0.46/webapps/  
+      copy:
+        src: /tmp/jenkins-tomcat.war
+        dest: /opt/tomcat/apache-tomcat-9.0.46/webapps/
+        force: yes
+      #shell: cp -R /tmp/jenkins-tomcat.war /opt/tomcat/apache-tomcat-9.0.46/webapps/  
     
   
