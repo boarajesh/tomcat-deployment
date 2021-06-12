@@ -1,5 +1,6 @@
 - hosts: apache-tomcat
   become: true
+  become_user: root
   tasks:
     - name: Check the war file exists
       stat:
